@@ -8,11 +8,11 @@ import { api } from "@/services/api";
 
 import Header from "@/components/layout/Header";
 import BottomNav from "@/components/layout/BottomNav";
-import MainStatusCard from "@/components/features/MainStatusCard";
+import MainStatusCard from "@/app/(dashboard)/_components/MainStatusCard";
+import DeviceControls from "@/app/(dashboard)/_components/DeviceControls";
 
-import EmptyDeviceState from "@/components/features/EmptyDeviceState";
-import DeviceControls from "@/components/features/DeviceControls";
-import WeatherSensorWidget from "@/components/features/WeatherSensorWidget";
+import EmptyDeviceState from "@/app/(dashboard)/_components/EmptyDeviceState";
+import WeatherSensorWidget from "@/app/(dashboard)/_components/WeatherSensorWidget";
 
 import { WeatherData, DeviceStatus } from "@/types";
 

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import BottomNav from "@/components/layout/BottomNav";
-import SwipeableLogCard from "@/components/features/SwipeableLogCard";
+import SwipeableLogCard from "./components/SwipeableLogCard";
 import { useDeviceHistory } from "@/hooks/useDeviceHistory";
 
 import {
