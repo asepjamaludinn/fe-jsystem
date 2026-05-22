@@ -3,20 +3,13 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import BottomNav from "@/components/layout/BottomNav";
-import NotificationCard from "@/components/features/NotificationCard";
+import NotificationCard from "./components/NotificationCard";
 import { useDeviceStore } from "@/store/useDeviceStore";
 import { api } from "@/services/api";
 import { useSocket } from "@/hooks/useSocket";
-import {
-  FiBell,
-  FiAlertTriangle,
-  FiInfo,
-  FiArrowLeft,
-  FiCheckCircle,
-  FiFilter,
-  FiCheck,
-} from "react-icons/fi";
+import { FiArrowLeft, FiCheckCircle, FiFilter, FiCheck } from "react-icons/fi";
 import { NotificationData } from "@/types";
+import { getNotifStyle } from "@/utils/themeMapping";
 
 export default function NotificationsPage() {
   const router = useRouter();
@@ -90,34 +83,6 @@ export default function NotificationsPage() {
     }
   };
 
-  const getNotifStyle = (type: string, isRead: boolean) => {
-    const opacityClass = isRead ? "opacity-60 grayscale-[30%]" : "opacity-100";
-    switch (type) {
-      case "danger":
-        return {
-          icon: <FiAlertTriangle className="text-xl text-red-500" />,
-          bgColor: `bg-red-50 border-red-100 ${opacityClass}`,
-          textColor: isRead ? "text-gray-400" : "text-red-600",
-          label: "Bahaya",
-        };
-      case "warning":
-        return {
-          icon: <FiBell className="text-xl text-amber-500" />,
-          bgColor: `bg-amber-50 border-amber-100 ${opacityClass}`,
-          textColor: isRead ? "text-gray-400" : "text-amber-600",
-          label: "Peringatan",
-        };
-      case "info":
-      default:
-        return {
-          icon: <FiInfo className="text-xl text-[#44ACFF]" />,
-          bgColor: `bg-[#44ACFF]/10 border-[#44ACFF]/20 ${opacityClass}`,
-          textColor: isRead ? "text-gray-400" : "text-[#44ACFF]",
-          label: "Info",
-        };
-    }
-  };
-
   const filteredNotifs = notifications.filter((notif) => {
     if (activeFilter === "Semua") return true;
     if (activeFilter === "Baru") return !notif.isRead;
@@ -132,7 +97,6 @@ export default function NotificationsPage() {
 
   return (
     <main className="flex-1 px-6 pt-10 pb-32 flex flex-col relative min-h-screen">
-      {/* Header Section */}
       <div className="flex items-center justify-between mb-4 relative z-10 animate-in fade-in slide-in-from-top-4 duration-500">
         <div className="flex items-center gap-4">
           <button

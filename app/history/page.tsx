@@ -5,75 +5,8 @@ import Header from "@/components/layout/Header";
 import BottomNav from "@/components/layout/BottomNav";
 import SwipeableLogCard from "./components/SwipeableLogCard";
 import { useDeviceHistory } from "@/hooks/useDeviceHistory";
-
-import {
-  FiCloudRain,
-  FiSun,
-  FiMoon,
-  FiShield,
-  FiAlertTriangle,
-  FiActivity,
-  FiSearch,
-  FiFilter,
-  FiCalendar,
-  FiX,
-} from "react-icons/fi";
-import { SensorLog } from "@/types";
-
-const getLogStyle = (log: SensorLog) => {
-  if (log.keamanan === "ADA ORANG!") {
-    return {
-      category: "Keamanan",
-      title: "Peringatan keamanan",
-      desc: "Terdeteksi pergerakan di area jemuran. Buzzer aktif.",
-      icon: <FiAlertTriangle className="text-red-500" />,
-      bg: "bg-red-50 border-red-100",
-    };
-  }
-  if (log.keamanan === "Gerakan") {
-    return {
-      category: "Keamanan",
-      title: "Gerakan terdeteksi",
-      desc: "Sensor pasif mendeteksi aktivitas mencurigakan.",
-      icon: <FiShield className="text-amber-500" />,
-      bg: "bg-amber-50 border-amber-100",
-    };
-  }
-  if (log.cuaca === "Hujan") {
-    return {
-      category: "Cuaca",
-      title: "Hujan terdeteksi",
-      desc: "Air mengenai sensor hujan. Jemuran ditarik otomatis.",
-      icon: <FiCloudRain className="text-[#44ACFF]" />,
-      bg: "bg-blue-50 border-blue-100",
-    };
-  }
-  if (log.cuaca === "Cerah") {
-    return {
-      category: "Cuaca",
-      title: "Cuaca cerah",
-      desc: "Cahaya matahari optimal. Jemuran dikeluarkan.",
-      icon: <FiSun className="text-orange-400" />,
-      bg: "bg-orange-50 border-orange-100",
-    };
-  }
-  if (log.cuaca === "Gelap") {
-    return {
-      category: "Cuaca",
-      title: "Kondisi gelap",
-      desc: "Minim cahaya. Jemuran ditarik masuk.",
-      icon: <FiMoon className="text-indigo-500" />,
-      bg: "bg-indigo-50 border-indigo-100",
-    };
-  }
-  return {
-    category: "Sistem",
-    title: "Pembaruan sistem",
-    desc: "Sistem merekam data sensor terkini.",
-    icon: <FiActivity className="text-emerald-500" />,
-    bg: "bg-emerald-50 border-emerald-100",
-  };
-};
+import { FiSearch, FiFilter, FiCalendar, FiX } from "react-icons/fi";
+import { getLogStyle } from "@/utils/themeMapping";
 
 export default function HistoryPage() {
   const { logs, isLoading, handleDeleteLog } = useDeviceHistory();
@@ -120,7 +53,6 @@ export default function HistoryPage() {
     <main className="flex-1 px-6 pt-12 pb-32 flex flex-col relative min-h-screen">
       <Header />
 
-      {/* FILTER BUTTONS & SEARCH */}
       <div className="mt-6 mb-6 animate-in fade-in slide-in-from-top-4 duration-500">
         <div className="flex items-center gap-3 relative" ref={dropdownRef}>
           <div className="relative flex-1 group">
@@ -203,7 +135,6 @@ export default function HistoryPage() {
         </div>
       </div>
 
-      {/* LIST LOGS */}
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
         <div className="flex justify-between items-end mb-4 px-1">
           <h2 className="text-xl font-semibold tracking-tight text-gray-900">
