@@ -1,11 +1,12 @@
 import { InputHTMLAttributes } from "react";
+import { cn } from "@/utils/cn";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
 }
 
-export function Input({ label, error, className = "", ...props }: InputProps) {
+export function Input({ label, error, className, ...props }: InputProps) {
   return (
     <div className="w-full">
       {label && (
@@ -14,11 +15,13 @@ export function Input({ label, error, className = "", ...props }: InputProps) {
         </label>
       )}
       <input
-        className={`w-full px-5 py-4 rounded-2xl bg-gray-50 border focus:outline-none transition-all text-[13px] font-semibold tracking-tight text-gray-800 placeholder:text-gray-300 shadow-inner disabled:opacity-50 disabled:cursor-not-allowed ${
+        className={cn(
+          "w-full px-5 py-4 rounded-2xl bg-gray-50 border focus:outline-none transition-all text-[13px] font-semibold tracking-tight text-gray-800 placeholder:text-gray-300 shadow-inner disabled:opacity-50 disabled:cursor-not-allowed",
           error
             ? "border-red-400 focus:border-red-500 bg-red-50/50"
-            : "border-transparent focus:border-[#44ACFF]/40 focus:bg-white"
-        } ${className}`}
+            : "border-transparent focus:border-[#44ACFF]/40 focus:bg-white",
+          className,
+        )}
         {...props}
       />
 
